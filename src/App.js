@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { connect } from "react-redux";
 
-function App() {
+function App(props) {
+  console.log(props);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div>
+        <button onClick={props.decrement}>-</button>
+        <span>Count:{props.count}</span>
+        <button onClick={props.increment}>+</button>
+        <button onClick={props.reset}>Reset</button>
+      </div>
+      <div>
+        <input type={"number"}/>
+          <select id="math-operator-select">
+            <option value={""}>choose a math operator</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="x">x</option>
+            <option value="/">x</option>
+          </select>
+        <input type={"number"}/>
+        <span>= ?</span>
+      </div>
+      <div>
+        <button>Calculate</button>
+      </div>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    count: state.countReducer.count,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increment: () => dispatch({ type: "INCREMENT" }),
+    decrement: () => dispatch({ type: "DECREMENT" }),
+    reset: () => dispatch({ type: "RESET" }),
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
