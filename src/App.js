@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react'
 import "./App.css";
 import { connect, useSelector, useDispatch } from "react-redux";
-import {add, subtract} from "./reducers/actions";
+import {add, subtract, multiply} from "./reducers/actions";
 
 const App = (props) => {
   console.log(props);
@@ -24,6 +24,9 @@ const App = (props) => {
     } else if (selectRef.current.value ===  "-"){
       let result = dispatch(subtract(num1, num2));
       setResultState(result.payload);
+    } else if (selectRef.current.value === "x"){
+      let result = dispatch(multiply(num1, num2));
+      setResultState(result.payload);
     }
   }
 
@@ -42,7 +45,7 @@ const App = (props) => {
             <option value="+">+</option>
             <option value="-">-</option>
             <option value="x">x</option>
-            <option value="/">x</option>
+            <option value="/">/</option>
           </select>
         <input ref={num2ref} type={"number"}/>
         {resultState}
