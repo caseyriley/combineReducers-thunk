@@ -1,15 +1,18 @@
+import {ADD, SUBTRACT} from './actions';
+
 const initialState = {
-  operator: "plus",
+  result: 0
 };
 
 export function calcReducer(state = initialState, action) {
   switch (action.type) {
-    case "plus":
-      return {
-        ...state
-      }
+    case ADD: {
+      return {...state, result: action.payload}
+    }
+    case SUBTRACT: {
+      return {...state, result: action.payload}
+    }
     default:
-      return state;
+      return state
   }
-  console.log("calcReducer00000000000")
 }
