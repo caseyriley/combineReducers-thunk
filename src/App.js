@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react'
 import "./App.css";
 import { connect, useSelector, useDispatch } from "react-redux";
-import {add, subtract, multiply} from "./reducers/actions";
+import {add, subtract, multiply, divide} from "./reducers/actions";
 
 const App = (props) => {
   console.log(props);
@@ -26,6 +26,9 @@ const App = (props) => {
       setResultState(result.payload);
     } else if (selectRef.current.value === "x"){
       let result = dispatch(multiply(num1, num2));
+      setResultState(result.payload);
+    } else if (selectRef.current.value === "/"){
+      let result = dispatch(divide(num1, num2));
       setResultState(result.payload);
     }
   }

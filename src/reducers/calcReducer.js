@@ -1,4 +1,4 @@
-import {ADD, MULTIPLY, SUBTRACT} from './actions';
+import {ADD, MULTIPLY, SUBTRACT, DIVIDE} from './actions';
 
 const initialState = {
   result: 0
@@ -13,6 +13,9 @@ export function calcReducer(state = initialState, action) {
       return {...state, result: action.payload}
     }
     case MULTIPLY: {
+      return {...state, result: action.payload}
+    }
+    case DIVIDE: {
       return {...state, result: action.payload}
     }
     default:
